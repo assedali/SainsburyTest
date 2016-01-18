@@ -2,6 +2,8 @@ package Sainsburys.TechnicalTest;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import Sainsburys.TechnicalTest.Entity.PageItem;
 
 /**
@@ -14,8 +16,10 @@ import Sainsburys.TechnicalTest.Entity.PageItem;
 
 public class PageSummary {
 
-	private List<PageItem> pageItem;
-	private float total;
+	private List<PageItem> listPageItem;
+	
+	@Resource
+	private PageItem pageItem;
 	
 	
 	/**
@@ -32,19 +36,12 @@ public class PageSummary {
 	  * 
 	  */
 	
+	
 	public List<PageItem> getPageItem() {
-		return pageItem;
+		return listPageItem;
 	}
 
 	public void setPageItem(List<PageItem> pageItem) {
-		this.pageItem = pageItem;
-	}
-
-	public float getTotal() {
-		return total;
-	}
-
-	public void setTotal(float total) {
-		this.total = total;
+		this.listPageItem = pageItem;
 	}
 }

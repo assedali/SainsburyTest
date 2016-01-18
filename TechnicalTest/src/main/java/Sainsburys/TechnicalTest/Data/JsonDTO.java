@@ -14,7 +14,7 @@ package Sainsburys.TechnicalTest.Data;
 public class JsonDTO {
 
 	private String title;
-	private String size;
+	private long size;
 	private float unitPrice;
 	private String description;
 	
@@ -41,11 +41,11 @@ public class JsonDTO {
 		this.title = title;
 	}
 
-	public String getSize() {
+	public long getSize() {
 		return size;
 	}
 
-	public void setSize(String size) {
+	public void setSize(long size) {
 		this.size = size;
 	}
 

@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans  xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<!--  <context:component-scan base-package="com.programcreek.examples" />  -->
-	<!--  
-	<bean id="helloWorldService"
-		class="com.programcreek.entrylevel.services.HelloWorldService">
-		<property name="name" value="Program Creek Readers" />
+<context:annotation-config />
+<context:spring-configured/>
+<context:component-scan base-package="Sainsburys.TechnicalTest.Execute" />
+
+<bean id="pageSummary"
+		class="Sainsburys.TechnicalTest.PageSummary">
+		<property name="pageItem" ref="pageItem"></property>
 	</bean>
-	 -->
+
+<bean id="pageItem"
+		class="Sainsburys.TechnicalTest.Entity.PageItem">
+		<property name="pageUrl" ref="pageUrl"></property>
+	</bean>
+	
+	<bean id="pageUrl"
+		class="Sainsburys.TechnicalTest.Entity.PageURL">
+	</bean>
+	
+	<bean id="product"
+		class="Sainsburys.TechnicalTest.Entity.Product">
+	</bean>
+	
+	<bean id="app"
+		class="Sainsburys.TechnicalTest.Execute.App">
+		<property name="urlReader" ref="urlReader"></property>
+		<property name="jsonDao" ref="jsonDao"></property>
+	</bean>
+	
+	<bean id="jsonDao"
+		class="Sainsburys.TechnicalTest.Data.JsonDAO">
+	</bean>
+	
+	<bean id="urlReader"
+		class="Sainsburys.TechnicalTest.Execute.UrlReader">
+		<property name="chromeDriverPath" value="/Users/asad/Downloads/chromedriver"></property>
+		<property name="grocerySiteUrl" value="http://www.sainsburys.co.uk/webapp/wcs/stores/servlet/CategoryDisplay?listView=true&amp;orderBy=FAVOURITES_FIRST&amp;parent_category_rn=12518&amp;top_category=12518&amp;langId=44&amp;beginIndex=0&amp;pageSize=20&amp;catalogId=10137&amp;searchTerm=&amp;categoryId=185749&amp;listId=&amp;storeId=10151&amp;promotionId=#langId=44&amp;storeId=10151&amp;catalogId=10137&amp;categoryId=185749&amp;parent_category_rn=12518&amp;top_category=12518&amp;pageSize=20&amp;orderBy=FAVOURITES_FIRST&amp;searchTerm=&amp;beginIndex=0&amp;hideFilters=true"></property>
+	</bean>
 
 </beans>

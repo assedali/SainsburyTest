@@ -11,7 +11,7 @@ package Sainsburys.TechnicalTest.Interface;
 
 public interface Page {
 
-	public static final String organization = "Sainsbury's";
+	public static final String organization = "Sainsbury";
 	
 	public String getOrganization();
 	

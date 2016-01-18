@@ -14,27 +14,24 @@ import org.jbehave.core.steps.CandidateSteps;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import org.junit.Test;
 
-public class StackScenarios extends JUnitStory {
+public class GrocerySiteScenarios extends JUnitStory {
 
 	@Override
 	public Configuration configuration() {
 		URL storyURL = null;
 		try {
-			// This requires you to start Maven from the project directory
-			storyURL = new URL("file://" + System.getProperty("user.dir")
-					/*+ "/src/main/java/resources/stories/"*/);
-			System.out.println("Story file...: "+storyURL);
+			storyURL = new URL("grocery_site_scenarios.story");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
 		return new MostUsefulConfiguration().useStoryLoader(
-				new LoadFromRelativeFile(storyURL)).useStoryReporterBuilder(
+				new LoadFromRelativeFile(null)).useStoryReporterBuilder(
 				new StoryReporterBuilder().withFormats(Format.HTML));
 	}
 
 	@Override
 	public List<CandidateSteps> candidateSteps() {
-		return new InstanceStepsFactory(configuration(), new StackSteps())
+		return new InstanceStepsFactory(configuration(), new GrocerySiteSteps())
 				.createCandidateSteps();
 	}
 	

@@ -1,7 +1,11 @@
 package Sainsburys.TechnicalTest.Data;
 
 import java.util.List;
-import java.util.Map;
+
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 
 
 /**
@@ -17,7 +21,8 @@ import java.util.Map;
 
 public class JsonDAO {
 	
-	private List<Map> results;
+	private JsonObject result;
+	private List<JsonDTO> listJDTO;
 	private float total;
 	
 	/**
@@ -29,18 +34,34 @@ public class JsonDAO {
 		
 	}
 
+	public void createJsonFromList() {
+		JsonArrayBuilder builder = Json.createArrayBuilder();
+		for(JsonDTO jsonDTO : listJDTO) {
+			  builder.add(Json.createObjectBuilder()
+				      .add("title", jsonDTO.getTitle())
+				      .add("size", jsonDTO.getSize())
+				      .add("unit_price", jsonDTO.getUnitPrice())
+				      .add("description", jsonDTO.getDescription()));
+			}
+		JsonArray jsonArray = builder.build();
+		
+		result = Json.createObjectBuilder()
+				  .add("results", jsonArray)
+				  .add("total", total)
+				  .build();
+	}
 	
 	/**
 	  * Getter and Setter methods for the class members
 	  * 
 	  */
 	
-	public List<Map> getResults() {
-		return results;
+	public JsonObject getResult() {
+		return result;
 	}
 
-	public void setResults(List<Map> results) {
-		this.results = results;
+	public void setResult(JsonObject result) {
+		this.result = result;
 	}
 
 	public float getTotal() {
@@ -49,6 +70,16 @@ public class JsonDAO {
 
 	public void setTotal(float total) {
 		this.total = total;
+	}
+
+
+	public List<JsonDTO> getListJDTO() {
+		return listJDTO;
+	}
+
+
+	public void setListJDTO(List<JsonDTO> listJDTO) {
+		this.listJDTO = listJDTO;
 	}
 	
 }
